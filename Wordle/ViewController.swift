@@ -28,9 +28,17 @@ class ViewController: UIViewController {
       This closure takes in a string (the string selected from the keyboard).
       If the string is equal to the `DELETE_KEY` constant (see Constants.swift), then call the `deleteLastCharacter` method of `boardController`.
       Else, it should use the `enter` method of `boardController` and pass in the selected string as the argument.
-     */
+    */
     // START YOUR CODE HERE
-    // ...
+    keyboardController.didSelectString = { [weak self] string in
+      guard let self = self else { return }
+
+      if string == DELETE_KEY {
+        self.boardController.deleteLastCharacter()
+      } else {
+        self.boardController.enter(string)
+      }
+    }
     // END YOUR CODE HERE
   }
 }
